@@ -74,7 +74,7 @@ jobs:
       
       - id: get-first-tag
         run: |
-          tag=$(echo ${{steps.meta.outputs.tags}} | cut -w  -f1)
+          tag=$(echo "${{steps.meta.outputs.tags}}" | tr -s ' ' | cut -d ' ' -f1)
           echo "::set-output name=first-tag::$tag"
 
       # Build and push Docker image with Buildx (don't push on PR)
